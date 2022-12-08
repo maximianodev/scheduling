@@ -6,8 +6,13 @@ export const errorHandler = (
   response: Response,
   next: NextFunction
 ) => {
-  if (error.message === 'User already exists') {
+  if (error.message === 'E-mail already exists') {
     response.status(409)
+    response.json({ error: error.message, status: 'Error' })
+  }
+
+  if (error.message === 'E-mail or password incorrect') {
+    response.status(403)
     response.json({ error: error.message, status: 'Error' })
   }
 

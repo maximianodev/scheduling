@@ -17,7 +17,7 @@ class CreateUserUseCase {
     })
 
     if (userAlreadyExists) {
-      throw new Error('User already exists')
+      throw new Error('E-mail already exists')
     }
 
     const passwordHash = await hash(password, 8)
