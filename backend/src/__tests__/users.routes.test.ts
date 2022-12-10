@@ -18,7 +18,6 @@ describe('[POST] /users/:id', () => {
       .expect(201)
 
     const data = response.body
-    delete data.password
 
     expect(data).toMatchObject({
       name: 'Test',

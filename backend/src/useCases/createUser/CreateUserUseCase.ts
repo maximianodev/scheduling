@@ -30,7 +30,10 @@ class CreateUserUseCase {
       },
     })
 
-    return user
+    return {
+      email: user.email,
+      name: user.name,
+    }
   }
 }
 
