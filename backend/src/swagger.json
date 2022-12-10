@@ -1,0 +1,123 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Scheduling Backend",
+    "description": "",
+    "license": {
+      "name": "",
+      "url": ""
+    }
+  },
+  "host": "localhost:3333",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Login Api"
+    }
+  ],
+  "paths": {
+    "/users/create": {
+      "post": {
+        "summary": "Create a new user",
+        "tags": [
+          "[users] create"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "default": "teste@gmail.com",
+                  "uniqueItems": true
+                },
+                "name": {
+                  "type": "string",
+                  "default": "teste"
+                },
+                "password": {
+                  "type": "string",
+                  "default": "YYteg#222"
+                }
+              }
+            },
+            "style": "simple"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "schema": {
+              "email": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/authenticate": {
+      "post": {
+        "summary": "Login",
+        "tags": [
+          "[users] login"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Login route",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "default": "teste@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "default": "YYteg#222"
+                }
+              }
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "schema": {
+              "token": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ]
+}
