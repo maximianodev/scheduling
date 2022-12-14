@@ -1,12 +1,12 @@
 import request from 'supertest'
 
-import { app } from '../index'
+import { app } from '../../index'
 
-describe('[POST] /users/:id', () => {
-  const eightDigitRandom = String(Math.random()).substring(2, 10)
-  const email = `test${eightDigitRandom}@gmail.com`
-  const password = eightDigitRandom
+const eightDigitRandom = String(Math.random()).substring(2, 10)
+const email = `test${eightDigitRandom}@gmail.com`
+const password = eightDigitRandom
 
+describe('[POST] /users/create', () => {
   it('should be able to create new users', async () => {
     const response = await request(app)
       .post('/users/create')
@@ -35,7 +35,9 @@ describe('[POST] /users/:id', () => {
       })
       .expect(409)
   })
+})
 
+describe('[POST] /users/authenticate', () => {
   it('should block login from a non-existing email', async () => {
     await request(app)
       .post('/users/authenticate')
