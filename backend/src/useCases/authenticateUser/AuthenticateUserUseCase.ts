@@ -1,4 +1,5 @@
 import { compare } from 'bcryptjs'
+import { sign } from 'jsonwebtoken'
 
 import { prismaClient } from '../../prisma/client'
 
@@ -24,6 +25,13 @@ class AuthenticateUserUseCase {
     if (!passwordMatch) {
       throw new Error('E-mail or password incorrect')
     }
+
+    const token = sign({}, process.env.JSONWEBTOKEN_KEY, {
+      subject: userAlreadyExists.id,
+      expiresIn: '20s',
+    })
+
+    return { token }
   }
 }
 
