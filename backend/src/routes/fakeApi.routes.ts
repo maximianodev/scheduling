@@ -1,8 +1,10 @@
 import { Router } from 'express'
 
+import endureAuthenticated from '../middleware/ensureAuthenticated'
+
 const fakeApiRoutes = Router()
 
-fakeApiRoutes.get('/', (request, response) => {
+fakeApiRoutes.get('/', endureAuthenticated, (request, response) => {
   return response.json([
     {
       id: 1,
