@@ -13,13 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: Install dependencies
         run: cd backend && yarn
       - name: Test and coverage
         run: cd backend && yarn test
+        env:
+          BACKEND_DATABASE_URL: ${{ secrets.BACKEND_DATABASE_URL }}
+          BACKEND_JSONWEBTOKEN_KEY: ${{ secrets.BACKEND_JSONWEBTOKEN_KEY }}
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
