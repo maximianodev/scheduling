@@ -36,25 +36,3 @@ describe('[POST] /users/create', () => {
       .expect(409)
   })
 })
-
-describe('[POST] /users/authenticate', () => {
-  it('should block login from a non-existing email', async () => {
-    await request(app)
-      .post('/users/authenticate')
-      .send({
-        email: 'teste-non-existing@teste.com',
-        password: '12345678',
-      })
-      .expect(403)
-  })
-
-  it('should block login from bad password', async () => {
-    await request(app)
-      .post('/users/authenticate')
-      .send({
-        email,
-        password: '12345678',
-      })
-      .expect(403)
-  })
-})
