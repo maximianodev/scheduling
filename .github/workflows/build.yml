@@ -23,6 +23,16 @@ jobs:
           JSONWEBTOKEN_KEY: 85acfbf9-0c88-4089-8e90-99f3b33bcae9
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.organization=maximianodev
+            -Dsonar.projectKey=maximianodev_scheduling
+            -Dsonar.sources=backend/src
+            -Dsonar.tests=backend/src
+            -Dsonar.test.inclusions=backend/src/**/__tests__/**
+            -Dsonar.exclusions=backend/src/**/__tests__/**
+            -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
+            -Dsonar.coverage.exclusions=__mocks__/**,.storybook/**,backend/src/stories/**,backend/src/types/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
