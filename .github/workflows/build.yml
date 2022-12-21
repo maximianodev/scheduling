@@ -19,8 +19,8 @@ jobs:
       - name: Test and coverage
         run: cd backend && yarn prisma:migrate && yarn test
         env:
-          DATABASE_URL: ${{ env.DATABASE_URL }}
-          JSONWEBTOKEN_KEY: ${{ env.JSONWEBTOKEN_KEY }}
+          DATABASE_URL: file:./dev.db
+          JSONWEBTOKEN_KEY: 85acfbf9-0c88-4089-8e90-99f3b33bcae9
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
