@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: cd backend && yarn
       - name: Test and coverage
-        run: cd backend && yarn test
+        run: cd backend && yarn prisma:migrate && yarn test
         env:
           BACKEND_DATABASE_URL: ${{ secrets.BACKEND_DATABASE_URL }}
           BACKEND_JSONWEBTOKEN_KEY: ${{ secrets.BACKEND_JSONWEBTOKEN_KEY }}
