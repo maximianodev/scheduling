@@ -19,8 +19,8 @@ jobs:
       - name: Test and coverage
         run: cd backend && yarn prisma:migrate && yarn test
         env:
-          BACKEND_DATABASE_URL: ${{ env.BACKEND_DATABASE_URL }}
-          BACKEND_JSONWEBTOKEN_KEY: ${{ env.BACKEND_JSONWEBTOKEN_KEY }}
+          BACKEND_DATABASE_URL: ${{ github.BACKEND_DATABASE_URL }}
+          BACKEND_JSONWEBTOKEN_KEY: ${{ github.BACKEND_JSONWEBTOKEN_KEY }}
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
